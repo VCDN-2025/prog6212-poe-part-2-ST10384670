@@ -1,8 +1,101 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<!-- Inline CSS for quick styling -->
+<style>
+    .hero-banner {
+        background: linear-gradient(135deg, #007bff, #00b4d8);
+        color: white;
+        text-align: center;
+        padding: 70px 20px;
+        border-bottom: 5px solid #0056b3;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+        .hero-banner h1 {
+            font-size: 2.8rem;
+            font-weight: bold;
+        }
+
+        .hero-banner p {
+            font-size: 1.2rem;
+            color: #e9f7ff;
+            margin-top: 10px;
+        }
+
+    .btn-light:hover {
+        background-color: #f1f1f1;
+        color: #0056b3;
+    }
+
+    .card {
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+</style>
+
+<!-- Hero Banner -->
+<div class="hero-banner">
+    <h1>Welcome to the Contract Monthly Claims System</h1>
+    <p>Submit, verify, and approve lecturer claims with ease and transparency.</p>
+    <a asp-controller="Claims" asp-action="SubmitClaim" class="btn btn-light btn-lg mt-3 shadow-sm">
+        Submit a Claim
+    </a>
+</div>
+
+<!-- Main Content -->
+<div class="container mt-5">
+    <div class="row text-center g-4">
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm border-0 rounded-4 h-100">
+                <div class="card-body">
+                    <h5 class="card-title text-primary fw-semibold mb-3">Submit a Claim</h5>
+                    <p class="card-text text-muted">
+                        Lecturers can submit monthly teaching claims and supporting documents easily.
+                    </p>
+                    <a asp-controller="Claims" asp-action="SubmitClaim" class="btn btn-primary px-4 mt-2">
+                        Go to Form
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm border-0 rounded-4 h-100">
+                <div class="card-body">
+                    <h5 class="card-title text-success fw-semibold mb-3">Programme Coordinator</h5>
+                    <p class="card-text text-muted">
+                        Review and verify claims before forwarding them to the academic manager.
+                    </p>
+                    <a asp-controller="ProgrammeCoordinators" asp-action="Index" class="btn btn-success px-4 mt-2">
+                        View Dashboard
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm border-0 rounded-4 h-100">
+                <div class="card-body">
+                    <h5 class="card-title text-info fw-semibold mb-3">Academic Manager</h5>
+                    <p class="card-text text-muted">
+                        Approve verified claims and finalize them for payment processing.
+                    </p>
+                    <a asp-controller="AcademicManagers" asp-action="Index" class="btn btn-info px-4 mt-2">
+                        View Dashboard
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-5 text-center text-muted">
+        <p>Need help? <a href="mailto:support@contractclaims.com">Contact Support</a></p>
+        <small>© @DateTime.Now.Year Contract Monthly Claims System</small>
+    </div>
 </div>
