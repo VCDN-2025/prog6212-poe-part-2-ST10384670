@@ -3,8 +3,43 @@
     ViewData["Title"] = "My Claims";
 }
 
+<style>
+    body {
+        background-color: #fff8dc; /* light banana color */
+    }
+
+    h2 {
+        background: linear-gradient(135deg, #ffc107, #ffb703);
+        color: #333;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+    }
+
+    table {
+        background-color: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    thead {
+        background: linear-gradient(135deg, #ffb703, #ff8800);
+        color: white;
+    }
+
+    tbody tr:hover {
+        background-color: #fff3cd !important;
+        transition: 0.2s ease-in-out;
+    }
+
+    .badge {
+        font-size: 0.9rem;
+        padding: 6px 10px;
+    }
+</style>
+
 <div class="container mt-4">
-    <h2 class="text-center text-primary mb-3">My Submitted Claims</h2>
+    <h2 class="text-center mb-3">My Submitted Claims</h2>
 
     @if (Model.Count == 0)
     {
@@ -13,7 +48,7 @@
     else
     {
         <table class="table table-bordered table-striped">
-            <thead class="table-dark">
+            <thead>
                 <tr>
                     <th>Claim ID</th>
                     <th>Hours Worked</th>
