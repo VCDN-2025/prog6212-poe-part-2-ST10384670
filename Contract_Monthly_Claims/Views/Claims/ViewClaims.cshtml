@@ -1,0 +1,64 @@
+﻿@model List<Contract_Monthly_Claims.Models.Claim>
+@{
+    ViewData["Title"] = "My Claims";
+}
+
+<div class="container mt-4">
+    <h2 class="text-center text-primary mb-3">My Submitted Claims</h2>
+
+    @if (Model.Count == 0)
+    {
+        <p class="text-muted text-center">No claims submitted yet.</p>
+    }
+    else
+    {
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>Claim ID</th>
+                    <th>Hours Worked</th>
+                    <th>Hourly Rate</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                    <th>Documents</th>
+                    <th>Date Submitted</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var c in Model)
+                {
+                    <tr>
+                        <td>@c.ClaimId</td>
+                        <td>@c.HoursWorked</td>
+                        <td>R @c.HourlyRate</td>
+                        <td><strong>R @(c.HoursWorked* c.HourlyRate)</strong></td>
+                        <td>
+                            <span class="badge
+                                        @(c.Status == "Approved" ? "bg-success" :
+                                                                    c.Status == "Rejected" ? "bg-danger" :
+                                                                    c.Status == "Verified" ? "bg-info" : "bg-warning")">
+                        @c.Status
+                    </span>
+                </td>
+                <td>
+                    @if (c.SupportingDocuments != null && c.SupportingDocuments.Any())
+                            {
+                                @foreach (var doc in c.SupportingDocuments)
+                                {
+                                    <a href="@doc.FilePath" target="_blank">@doc.FileName</a>
+                    
+                                    <br />
+                                }
+                            }
+                            else
+                            {
+                                <span class="text-muted">No file</span>
+                            }
+                        </td>
+                        <td>@c.DateSubmitted.ToShortDateString()</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

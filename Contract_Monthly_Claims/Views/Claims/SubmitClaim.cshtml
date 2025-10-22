@@ -1,0 +1,50 @@
+﻿@model Contract_Monthly_Claims.Models.Claim
+@{
+    ViewData["Title"] = "Submit Claim";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-3 text-center text-primary">Submit Monthly Claim</h2>
+
+    <form asp-action="SubmitClaim" method="post" enctype="multipart/form-data" class="card p-4 shadow">
+        <div class="mb-3">
+            <label asp-for="LecturerId" class="form-label">Lecturer ID</label>
+            <input asp-for="LecturerId" type="number" class="form-control" placeholder="Enter Lecturer ID" required />
+            <span asp-validation-for="LecturerId" class="text-danger"></span>
+        </div>
+
+
+        <!-- Hours Worked & Hourly Rate -->
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label asp-for="HoursWorked" class="form-label">Hours Worked</label>
+                <input asp-for="HoursWorked" class="form-control" type="number" min="1" required />
+                <span asp-validation-for="HoursWorked" class="text-danger"></span>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label asp-for="HourlyRate" class="form-label">Hourly Rate</label>
+                <input asp-for="HourlyRate" class="form-control" type="number" min="100" required />
+                <span asp-validation-for="HourlyRate" class="text-danger"></span>
+            </div>
+        </div>
+
+        <!-- Additional Notes -->
+        <div class="mb-3">
+            <label asp-for="Notes" class="form-label">Additional Notes</label>
+            <textarea asp-for="Notes" class="form-control" rows="3" placeholder="Any extra details"></textarea>
+        </div>
+
+        <!-- File Upload -->
+        <div class="mb-3">
+            <label class="form-label">Upload Supporting Document (.pdf, .docx, .xlsx)</label>
+            <input type="file" name="document" class="form-control" accept=".pdf,.docx,.xlsx" />
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-success w-100">Submit Claim</button>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

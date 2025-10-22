@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36414.22
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contract_Monthly_Claims", "Contract_Monthly_Claims\Contract_Monthly_Claims.csproj", "{7B48B516-A289-48E2-AFC9-E92A2898DEEF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mccpoe2", "mccpoe2\mccpoe2.csproj", "{45E5EC6C-3230-4475-9913-B62423D16854}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7B48B516-A289-48E2-AFC9-E92A2898DEEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B48B516-A289-48E2-AFC9-E92A2898DEEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B48B516-A289-48E2-AFC9-E92A2898DEEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B48B516-A289-48E2-AFC9-E92A2898DEEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45E5EC6C-3230-4475-9913-B62423D16854}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45E5EC6C-3230-4475-9913-B62423D16854}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45E5EC6C-3230-4475-9913-B62423D16854}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45E5EC6C-3230-4475-9913-B62423D16854}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F33498F5-02B8-4F69-9122-70B0AF7B6248}
+	EndGlobalSection
+EndGlobal

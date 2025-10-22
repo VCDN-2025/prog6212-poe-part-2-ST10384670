@@ -1,0 +1,71 @@
+﻿@model List<Contract_Monthly_Claims.Models.Claim>
+@{
+    ViewData["Title"] = "Coordinator - Verify Claims";
+}
+
+<div class="container mt-4">
+    <h2 class="text-center text-info mb-4">Programme Coordinator - Verify Claims</h2>
+
+    @if (!Model.Any())
+    {
+        <p class="text-muted text-center">No pending claims to verify.</p>
+    }
+    else
+    {
+        <table class="table table-hover table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>Claim ID</th>
+                    <th>Lecturer</th>
+                    <th>Total Amount</th>
+                    <th>Notes</th>
+                    <th>Document</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var claim in Model)
+                {
+                    <tr>
+                        <td>@claim.ClaimId</td>
+                        <td>@claim.Lecturer?.FullName ?? "N/A"</td>
+                        <td>R @claim.TotalAmount</td>
+                        <td>@claim.Notes</td>
+                        <td>
+                            @if (claim.SupportingDocuments.Any())
+                            {
+                                <a href="@claim.SupportingDocuments.First().FilePath" target="_blank">
+                                    @claim.SupportingDocuments.First().FileName
+                                </a>
+                            }
+                            else
+                            {
+                                <span class="text-muted">None</span>
+                            }
+                        </td>
+                        <td>
+                            <span class="badge bg-warning">@claim.Status</span>
+                        </td>
+                        <td>
+                            <div class="d-flex gap-2">
+                                <!-- Verify -->
+                                <form asp-action="VerifyClaim" method="post" style="display:inline;">
+                                    <input type="hidden" name="id" value="@claim.ClaimId" />
+                                    <input type="hidden" name="isApproved" value="true" />
+                                    <button type="submit" class="btn btn-sm btn-success">Verify</button>
+                                </form>
+                                <!-- Reject -->
+                                <form asp-action="VerifyClaim" method="post" style="display:inline;">
+                                    <input type="hidden" name="id" value="@claim.ClaimId" />
+                                    <input type="hidden" name="isApproved" value="false" />
+                                    <button type="submit" class="btn btn-sm btn-danger">Reject</button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
