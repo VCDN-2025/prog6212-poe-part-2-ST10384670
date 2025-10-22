@@ -3,8 +3,84 @@
     ViewData["Title"] = "Coordinator - Verify Claims";
 }
 
+<style>
+    /* Force body background even if layout overrides */
+    html, body {
+        background-color: #fff8dc !important; /* banana color */
+        height: 100%;
+        margin: 0;
+    }
+
+    .container {
+        background-color: #ffffff;
+        border-radius: 15px;
+        padding: 20px 30px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    h2 {
+        background: linear-gradient(135deg, #ffcc00, #ffb703);
+        color: #222;
+        padding: 15px;
+        border-radius: 12px;
+        font-weight: 600;
+        text-align: center;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    table {
+        background-color: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+
+    thead {
+        background: linear-gradient(135deg, #ffb703, #ff8800);
+        color: #fff;
+    }
+
+    tbody tr:hover {
+        background-color: #fff3cd !important;
+        transition: 0.2s ease-in-out;
+    }
+
+    .btn-success {
+        background-color: #28a745;
+        border: none;
+        font-weight: 500;
+    }
+
+        .btn-success:hover {
+            background-color: #218838;
+        }
+
+    .btn-danger {
+        background-color: #dc3545;
+        border: none;
+        font-weight: 500;
+    }
+
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+
+    .badge {
+        font-size: 0.9rem;
+        padding: 6px 10px;
+    }
+
+    p.text-muted {
+        background-color: #fff3cd;
+        padding: 15px;
+        border-radius: 8px;
+        display: inline-block;
+    }
+</style>
+
 <div class="container mt-4">
-    <h2 class="text-center text-info mb-4">Programme Coordinator - Verify Claims</h2>
+    <h2>Programme Coordinator - Verify Claims</h2>
 
     @if (!Model.Any())
     {
@@ -13,7 +89,7 @@
     else
     {
         <table class="table table-hover table-bordered">
-            <thead class="table-dark">
+            <thead>
                 <tr>
                     <th>Claim ID</th>
                     <th>Lecturer</th>
@@ -35,7 +111,7 @@
                         <td>
                             @if (claim.SupportingDocuments.Any())
                             {
-                                <a href="@claim.SupportingDocuments.First().FilePath" target="_blank">
+                                <a href="@claim.SupportingDocuments.First().FilePath" target="_blank" class="text-primary fw-bold">
                                     @claim.SupportingDocuments.First().FileName
                                 </a>
                             }
@@ -45,21 +121,21 @@
                             }
                         </td>
                         <td>
-                            <span class="badge bg-warning">@claim.Status</span>
+                            <span class="badge bg-warning text-dark">@claim.Status</span>
                         </td>
                         <td>
-                            <div class="d-flex gap-2">
+                            <div class="d-flex gap-2 justify-content-center">
                                 <!-- Verify -->
                                 <form asp-action="VerifyClaim" method="post" style="display:inline;">
                                     <input type="hidden" name="id" value="@claim.ClaimId" />
                                     <input type="hidden" name="isApproved" value="true" />
-                                    <button type="submit" class="btn btn-sm btn-success">Verify</button>
+                                    <button type="submit" class="btn btn-sm btn-success shadow-sm">Verify</button>
                                 </form>
                                 <!-- Reject -->
                                 <form asp-action="VerifyClaim" method="post" style="display:inline;">
                                     <input type="hidden" name="id" value="@claim.ClaimId" />
                                     <input type="hidden" name="isApproved" value="false" />
-                                    <button type="submit" class="btn btn-sm btn-danger">Reject</button>
+                                    <button type="submit" class="btn btn-sm btn-danger shadow-sm">Reject</button>
                                 </form>
                             </div>
                         </td>
