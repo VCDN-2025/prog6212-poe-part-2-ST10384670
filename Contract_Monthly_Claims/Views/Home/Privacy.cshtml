@@ -1,6 +1,89 @@
 ﻿@{
     ViewData["Title"] = "Privacy Policy";
 }
-<h1>@ViewData["Title"]</h1>
 
-<p>Use this page to detail your site's privacy policy.</p>
+<style>
+    .privacy-banner {
+        background: linear-gradient(135deg, #ffb703, #fb8500);
+        color: white;
+        text-align: center;
+        padding: 60px 20px;
+        border-bottom: 4px solid #c96b00;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+        .privacy-banner h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+
+    .privacy-section {
+        background-color: #fffbea;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        margin-top: 30px;
+    }
+
+        .privacy-section h3 {
+            color: #d97706;
+            margin-bottom: 15px;
+        }
+
+        .privacy-section p {
+            color: #444;
+            line-height: 1.7;
+        }
+</style>
+
+<!-- Privacy Banner -->
+<div class="privacy-banner">
+    <h1>Privacy Policy</h1>
+    <p>Your privacy is important to us at the Contract Monthly Claims System.</p>
+</div>
+
+<div class="container mt-5 mb-5">
+    <div class="privacy-section">
+        <h3>1. Information We Collect</h3>
+        <p>
+            We collect information that you provide when submitting claims, including personal details,
+            work hours, supporting documents, and communication records. This information helps us
+            process and manage your claim efficiently.
+        </p>
+
+        <h3>2. How We Use Your Information</h3>
+        <p>
+            Your information is used strictly for claim submission, verification, approval,
+            and reporting purposes. We do not share your personal data with unauthorized parties.
+        </p>
+
+        <h3>3. Data Protection</h3>
+        <p>
+            All claim data is securely stored and accessed only by authorized personnel,
+            including Programme Coordinators and Academic Managers.
+            We employ standard security measures to prevent unauthorized access.
+        </p>
+
+        <h3>4. Cookies</h3>
+        <p>
+            Our system may use cookies to improve user experience and session management.
+            You can disable cookies in your browser settings if preferred.
+        </p>
+
+        <h3>5. Your Rights</h3>
+        <p>
+            You have the right to access, correct, or request deletion of your personal information.
+            Contact the system administrator if you wish to exercise these rights.
+        </p>
+
+        <h3>6. Contact Us</h3>
+        <p>
+            If you have any questions about this policy or how we handle your data,
+            please contact us at <a href="mailto:support@contractclaims.com">support@contractclaims.com</a>.
+        </p>
+
+        <p class="text-muted mt-4">
+            Last updated: @DateTime.Now.ToString("MMMM yyyy")
+        </p>
+    </div>
+</div>
