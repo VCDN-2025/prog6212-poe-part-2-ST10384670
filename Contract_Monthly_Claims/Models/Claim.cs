@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-
 namespace Contract_Monthly_Claims.Models
 {
     public class Claim
@@ -11,6 +10,9 @@ namespace Contract_Monthly_Claims.Models
         public int LecturerId { get; set; }
 
         public Lecturer? Lecturer { get; set; }
+
+        [Required(ErrorMessage = "Module selection is required.")]
+        public string ModuleName { get; set; } = string.Empty; // <-- added
 
         [Required(ErrorMessage = "Hours worked is required.")]
         [Range(1, 200, ErrorMessage = "Hours worked must be between 1 and 200.")]
@@ -28,7 +30,6 @@ namespace Contract_Monthly_Claims.Models
         public DateTime DateSubmitted { get; set; } = DateTime.Now;
 
         public string CurrentApprover { get; set; } = "Programme Coordinator";
-
 
         public List<SupportingDocument> SupportingDocuments { get; set; } = new();
     }

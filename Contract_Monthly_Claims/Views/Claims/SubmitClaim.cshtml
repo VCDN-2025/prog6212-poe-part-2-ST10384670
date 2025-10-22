@@ -1,22 +1,31 @@
 ﻿@model Contract_Monthly_Claims.Models.Claim
 @{
     ViewData["Title"] = "Submit Claim";
+
+    // Example modules with fixed hourly rates
+    var modules = new List<(string Name, decimal HourlyRate)>
+    {
+        ("Mathematics 101", 150),
+        ("Physics 201", 180),
+        ("Computer Science 301", 200),
+        ("Chemistry 101", 160)
+    };
 }
 
 <style>
-    /* Page styling */
     body {
         background: #f4f7fa;
     }
 
+    /* Banner */
     .claim-banner {
         background: linear-gradient(135deg, #007bff, #00b4d8);
         color: white;
         text-align: center;
         padding: 60px 20px;
         border-bottom: 4px solid #0056b3;
-        box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
         border-radius: 0 0 25px 25px;
+        box-shadow: 0 3px 15px rgba(0,0,0,0.1);
     }
 
         .claim-banner h2 {
@@ -24,11 +33,12 @@
             font-weight: bold;
         }
 
+    /* Card/Form */
     .card {
         border: none;
         border-radius: 15px;
         background-color: #ffffff;
-        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 5px 25px rgba(0,0,0,0.1);
     }
 
     .form-label {
@@ -36,14 +46,14 @@
         color: #333;
     }
 
-    input, textarea {
+    input, textarea, select {
         border-radius: 10px !important;
         border: 1px solid #ccc !important;
     }
 
-        input:focus, textarea:focus {
+        input:focus, textarea:focus, select:focus {
             border-color: #007bff !important;
-            box-shadow: 0 0 6px rgba(0, 123, 255, 0.3);
+            box-shadow: 0 0 6px rgba(0,123,255,0.3);
         }
 
     .btn-success {
@@ -58,7 +68,7 @@
         .btn-success:hover {
             background: linear-gradient(135deg, #009645, #007bff);
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.2);
+            box-shadow: 0 5px 15px rgba(0,123,255,0.2);
         }
 
     .container {
@@ -86,10 +96,24 @@
     <div class="card p-5 shadow">
         <form asp-action="SubmitClaim" method="post" enctype="multipart/form-data">
 
+            <!-- Lecturer ID -->
             <div class="mb-3">
                 <label asp-for="LecturerId" class="form-label">Lecturer ID</label>
                 <input asp-for="LecturerId" type="number" class="form-control" placeholder="Enter your Lecturer ID" required />
                 <span asp-validation-for="LecturerId" class="text-danger"></span>
+            </div>
+
+            <!-- Module Selection -->
+            <div class="mb-3">
+                <label asp-for="ModuleName" class="form-label">Module</label>
+                <select asp-for="ModuleName" class="form-select" id="moduleSelect" required>
+                    <option value="">-- Select Module --</option>
+                    @foreach (var module in modules)
+                    {
+                        <option value="@module.Name" data-rate="@module.HourlyRate">@module.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="ModuleName" class="text-danger"></span>
             </div>
 
             <!-- Hours Worked & Hourly Rate -->
@@ -101,7 +125,7 @@
                 </div>
                 <div class="col-md-6 mb-3">
                     <label asp-for="HourlyRate" class="form-label">Hourly Rate (R)</label>
-                    <input asp-for="HourlyRate" class="form-control" type="number" min="100" required />
+                    <input asp-for="HourlyRate" id="HourlyRate" class="form-control" type="number" readonly />
                     <span asp-validation-for="HourlyRate" class="text-danger"></span>
                 </div>
             </div>
@@ -120,8 +144,7 @@
 
             <!-- Note -->
             <div class="note-box mb-4">
-                <strong>Note:</strong> Please ensure your claim is accurate and includes all required documentation.
-                Claims without supporting documents may be delayed.
+                <strong>Note:</strong> Ensure your claim is accurate and includes all required documentation. Claims without supporting documents may be delayed.
             </div>
 
             <!-- Submit Button -->
@@ -132,4 +155,15 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        const moduleSelect = document.getElementById('moduleSelect');
+        const hourlyRateInput = document.getElementById('HourlyRate');
+
+        moduleSelect.addEventListener('change', function () {
+            const selectedOption = moduleSelect.selectedOptions[0];
+            const rate = selectedOption.getAttribute('data-rate');
+            hourlyRateInput.value = rate || '';
+        });
+    </script>
 }
