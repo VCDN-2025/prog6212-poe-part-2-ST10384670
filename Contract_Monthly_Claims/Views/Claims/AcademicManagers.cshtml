@@ -17,6 +17,7 @@
                 <tr>
                     <th>Claim ID</th>
                     <th>Lecturer</th>
+                    <th>Module</th> <!-- NEW COLUMN -->
                     <th>Total Amount</th>
                     <th>Notes</th>
                     <th>Document</th>
@@ -30,6 +31,7 @@
                     <tr>
                         <td>@claim.ClaimId</td>
                         <td>@claim.Lecturer?.FullName ?? "N/A"</td>
+                        <td>@claim.ModuleName ?? "N/A"</td> <!-- Display module -->
                         <td>R @claim.TotalAmount</td>
                         <td>@claim.Notes</td>
                         <td>
@@ -67,76 +69,3 @@
         </table>
     }
 </div>
-
-<style>
-    /* Page container with soft banana background */
-    .manager-approve-container {
-        background-color: #fff8dc; /* soft banana */
-        padding: 25px;
-        border-radius: 15px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-    }
-
-        /* Banner header */
-        .manager-approve-container h2 {
-            background: linear-gradient(135deg, #ffb703, #ffcc00);
-            color: #333;
-            padding: 15px;
-            border-radius: 10px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-        }
-
-        /* Table styling */
-        .manager-approve-container table {
-            border-radius: 10px;
-            overflow: hidden;
-            background-color: #fff;
-        }
-
-        .manager-approve-container thead {
-            background: linear-gradient(135deg, #ffb703, #ff8800);
-            color: #fff;
-            text-align: center;
-        }
-
-        .manager-approve-container tbody tr:hover {
-            background-color: #fff3cd !important;
-            transition: 0.2s ease-in-out;
-        }
-
-        /* Buttons */
-        .manager-approve-container .btn-success {
-            background-color: #28a745;
-            border: none;
-            font-weight: 500;
-        }
-
-            .manager-approve-container .btn-success:hover {
-                background-color: #218838;
-            }
-
-        .manager-approve-container .btn-danger {
-            background-color: #dc3545;
-            border: none;
-            font-weight: 500;
-        }
-
-            .manager-approve-container .btn-danger:hover {
-                background-color: #c82333;
-            }
-
-        /* Badge */
-        .manager-approve-container .badge {
-            font-size: 0.9rem;
-            padding: 6px 10px;
-        }
-
-        /* Empty message */
-        .manager-approve-container p.text-muted {
-            background-color: #fff3cd;
-            padding: 15px;
-            border-radius: 8px;
-            display: inline-block;
-        }
-</style>

@@ -51,6 +51,7 @@
             <thead>
                 <tr>
                     <th>Claim ID</th>
+                    <th>Module</th> <!-- NEW COLUMN -->
                     <th>Hours Worked</th>
                     <th>Hourly Rate</th>
                     <th>Total</th>
@@ -64,14 +65,15 @@
                 {
                     <tr>
                         <td>@c.ClaimId</td>
+                        <td>@c.ModuleName</td> <!-- Display module -->
                         <td>@c.HoursWorked</td>
                         <td>R @c.HourlyRate</td>
                         <td><strong>R @(c.HoursWorked* c.HourlyRate)</strong></td>
                         <td>
                             <span class="badge
-                                        @(c.Status == "Approved" ? "bg-success" :
-                                                                    c.Status == "Rejected" ? "bg-danger" :
-                                                                    c.Status == "Verified" ? "bg-info" : "bg-warning")">
+                                                @(c.Status == "Approved" ? "bg-success" :
+                                                                            c.Status == "Rejected" ? "bg-danger" :
+                                                                            c.Status == "Verified" ? "bg-info" : "bg-warning")">
                         @c.Status
                     </span>
                 </td>

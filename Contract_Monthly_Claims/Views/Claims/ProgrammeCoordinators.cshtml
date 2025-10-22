@@ -4,9 +4,8 @@
 }
 
 <style>
-    /* Force body background even if layout overrides */
     html, body {
-        background-color: #fff8dc !important; /* banana color */
+        background-color: #fff8dc !important;
         height: 100%;
         margin: 0;
     }
@@ -93,6 +92,7 @@
                 <tr>
                     <th>Claim ID</th>
                     <th>Lecturer</th>
+                    <th>Module</th> <!-- NEW COLUMN -->
                     <th>Total Amount</th>
                     <th>Notes</th>
                     <th>Document</th>
@@ -106,6 +106,7 @@
                     <tr>
                         <td>@claim.ClaimId</td>
                         <td>@claim.Lecturer?.FullName ?? "N/A"</td>
+                        <td>@claim.ModuleName ?? "N/A"</td> <!-- Display module -->
                         <td>R @claim.TotalAmount</td>
                         <td>@claim.Notes</td>
                         <td>
